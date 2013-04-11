@@ -30,7 +30,7 @@ exports['query'] = {
   'no args': function(test) {
     test.expect(1);
     // tests here
-    test.equal('query', 'query', 'should be a query.');
+    test.equal(query, 'query', 'should be a query.');
     test.done();
   },
 };
