@@ -8,11 +8,24 @@ Install the module with: `npm install db-query`
 ## Examples
 ```javascript
 var Query = require('db-query');
+var anyDB = require('any-db');
+var database = 'postgres://user@host:5432/database_name';
+
+var dbPool = anyDB.createPool(database, {
+  min: 5,
+  max: 15,
+  onConnect: function (conn, done) {
+    done(null, conn);
+  },
+  reset: function (conn, done) {
+    done(null);
+  }
+});
 
 var options = { id: [1,2,3,4] };
 // or options = { id: '1,2,3,4' };
 
-var q = new Query()
+var q = new Query(dbPool)
   .select('*')
   .from('users')
   .join('LEFT JOIN posts ON posts.user_id = users.id')
