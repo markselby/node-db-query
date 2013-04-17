@@ -5,6 +5,8 @@ Create SQL queries programatically in Node.js. Loosely based on Rails' ActiveRel
 ## Getting Started
 Install the module with: `npm install db-query`
 
+This example uses [any-db](https://github.com/grncdr/node-any-db), so you'll need to `npm install any-db` to run it.
+
 ## Examples
 ```javascript
 var Query = require('db-query');
