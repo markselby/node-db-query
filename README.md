@@ -30,16 +30,28 @@ var options = { id: [1,2,3,4] };
 var q = new Query(dbPool)
   .select('*')
   .from('users')
-  .join('LEFT JOIN posts ON posts.user_id = users.id')
+  .join('JOIN posts ON posts.user_id = users.id')
   .order('posts.updated_at DESC')
   .limit(10);
 
-if (options.id) {
-  q.ids(options.id);
+// Add some sample optional processing to the query
+var food = 'cheese';
+
+if (food) {
+  // Get people by food
+  q.join('JOIN foods ON foods.id = users.food_id')
+  q.param(food);
+  q.where('foods.name = ' + q.paramNo()); // This becomes : foods.name = $1
+} else {
+  // Get people by id(s)
+  // q.ids is another form of q.param, but will join arrays and wraps the result in '{ }' braces.
+  q.ids([1,2,3,4]); // q.ids('1,2,3,4'); as an alternative
   // This is using Postgres' ANY format rather than id IN blah because it's much more efficient
   q.where('id = ANY(' + q.paramNo() + '::int[])');
+  // This becomes : id = ANY($2::int[]) 
 }
 
+// Prepare some event handlers and execute the query
 q.on('row', function(row) { console.log(row); })
   .on('error', function(err) { console.log(err); })
   .on('end', function(data) { console.log(data); })
