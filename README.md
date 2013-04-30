@@ -48,7 +48,7 @@ if (food) {
   q.ids([1,2,3,4]); // q.ids('1,2,3,4'); as an alternative
   // This is using Postgres' ANY format rather than id IN blah because it's much more efficient
   q.where('id = ANY(' + q.paramNo() + '::int[])');
-  // This becomes : id = ANY($2::int[]) 
+  // This becomes : id = ANY($1::int[]) 
 }
 
 // Prepare some event handlers and execute the query
