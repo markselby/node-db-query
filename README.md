@@ -30,8 +30,8 @@ production:
   password: camembert
 ```
 
-And optionally a config/queries.yml that looks something like (Note the optional use of parameters - $1, $2 etc.
-) :
+And optionally a config/queries.yml that looks something like :  
+(Note the optional use of parameters - $1, $2 etc)
 ```yml
 news-search:
   SELECT ts_headline(title, q, 'HighlightAll=TRUE') AS title, link, image, ts_headline(intro, q, 'HighlightAll=TRUE') AS intro
