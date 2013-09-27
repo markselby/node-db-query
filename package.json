@@ -1,7 +1,7 @@
 {
   "name": "db-query",
   "description": "Create SQL queries programatically in Node.js. Loosely based on Rails' ActiveRelation.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/markselby/node-db-query",
   "author": {
     "name": "Mark Selby",
