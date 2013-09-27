@@ -18,10 +18,8 @@ defaults: &defaults
 development:
   <<: *defaults
   database: writebox_development
-  username: cheeese
+  username: cheese
   password: edam
-  min: 1
-  max: 1
 
 production:
   <<: *defaults
