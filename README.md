@@ -59,14 +59,17 @@ function someCallback(rows) {
   console.log('Rows : ' + rows.length);
 }
 
-// Programmatic query
+// You can use callbacks and/or events
+
+// Programmatic query - so call .execute() as the last step
 db.query('news', someCallback)
   .select('*')
   .on('error', function(err) { console.log(err); })
   .on('end', function(result) { console.log(result[0]); })
   .execute();
 
-// Named query (from your config/queries.yml file)
+// Named query (from your config/queries.yml file) - no need to call .execute()
+// name, query parameters, optional callback
 db.named('news-search', ['syria', 20], someCallback)
   .on('error', function(err) { console.log(err); })
   .on('end', function(result) { console.log(result[0]); });
@@ -75,7 +78,7 @@ db.named('news-search', ['syria', 20], someCallback)
 var options = { id: [1,2,3,4] };
 // or options = { id: '1,2,3,4' };
 
-var q = new Query(dbPool)
+db2.query()
   .select('*')
   .from('users')
   .join('JOIN posts ON posts.user_id = users.id')
