@@ -21,7 +21,7 @@
       "url": "https://github.com/markselby/node-db-query/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/query",
+  "main": "lib/pool",
   "engines": {
     "node": ">= 0.8.0"
   },
